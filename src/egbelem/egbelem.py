@@ -151,5 +151,5 @@ if __name__ == "__main__":
         params = load_params(sys.argv[1])
     else:
         params = {}
-    bigantr = BigantrLEM(params)
-    bigantr.run()
+    elem = EgbeLem(params)
+    elem.run()
