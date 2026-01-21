@@ -125,28 +125,22 @@ class EgbeLem(LandlabModel):
             sediment_porosity=egbe_params["sediment_porosity"],
             depth_decay_scale=egbe_params["depth_decay_scale"],
             plucking_coefficient=egbe_params["plucking_coefficient"],
-            epsilon=egbe_params["epsilon"]
+            epsilon=egbe_params["epsilon"],
             abrasion_coefficients=egbe_params["abrasion_coefficients"],
             bedrock_abrasion_coefficient=egbe_params["bedrock_abrasion_coefficient"],
             fractions_from_plucking=egbe_params["fractions_from_plucking"],
-            
-            rock_abrasion_index=egbe_params["rock_abrasion_index"],
+            rho_sed=2650.,
+            rho_water=1000.,
+            use_fixed_width=egbe_params["use_fixed_width"],
+            fixed_width_coeff=egbe_params["fixed_width_coeff"],
+            fixed_width_expt=egbe_params["fixed_width_expt"],
+            mannings_n=egbe_params["mannings_n"],
+            tau_star_c_median=egbe_params["tau_star_c_median"],
+            alpha=egbe_params["alpha"],
+            tau_c_bedrock=egbe_params["tau_c_bedrock"],
+            d_min=egbe_params["d_min"],
+            plucking_by_tools_flag=egbe_params["plucking_by_tools_flag"]
         )
-
-        fractions_from_plucking=1.0,
-        rock_abrasion_index=0,
-        rho_sed=2650,
-        rho_water=1000,
-        fixed_width_flag=1,
-        fixed_width_coeff=0.002,
-        fixed_width_expt=0.5,
-        mannings_n=0.05,
-        tau_star_c_median=0.045,
-        alpha=0.68,
-        tau_c_bedrock=10,
-        d_min = 0.1,
-        plucking_by_tools_flag=1
-    
 
     def update(self, dt):
         """Advance the model by one time step of duration dt."""
