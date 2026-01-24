@@ -13,6 +13,7 @@
 - [ ] Select a raster or hex grid
 - [ ] When imported into Python, have option to pass parameters as a dict (which allows having some parameters be spatially varying)
 - [ ] Output to NetCDF (raster) and VTK (hex or raster) with user control on fields to be included
+- [ ] Reproduce Yuval's example (sim_num_14.pkl)
 
 ### Nice to have
 

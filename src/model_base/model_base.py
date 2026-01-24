@@ -89,6 +89,7 @@ def _get_pause_time_list_and_next(time_info, clock_dict, no_first_pause=False):
 class LandlabModel:
     """Base class for a generic Landlab grid-based model."""
 
+    # Default parameters, to be overridden in derived classes
     DEFAULT_PARAMS = {
         "grid": {
             "source": "create",
@@ -111,12 +112,29 @@ class LandlabModel:
         },
     }
 
-    def __init__(self, params={}):
+    def __init__(self, params={}, input_file=None):
         """Initialize the model."""
+        if input_file is not None:
+            params = load_params(params)
         merge_user_and_default_params(params, self.DEFAULT_PARAMS)
         self.setup_grid(params["grid"])
         self.setup_for_output(params)
         self.setup_run_control(params["clock"])
+
+    def verify_input_file_and_load_params(self, input_file):
+        """
+        If the named file exists, read it and return a dict of parameters.
+        Otherwise, raise FileNotFoundError.
+
+        Note: currently load_params does not handle missing files gracefully?
+        """
+        try:
+            f = open(input_file, "r")
+            f.close()
+            params = load_params(input_file)
+            return params
+        except FileNotFoundError:
+            raise
 
     def setup_grid(self, grid_params):
         """Load or create the grid.

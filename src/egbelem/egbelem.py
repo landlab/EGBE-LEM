@@ -84,9 +84,9 @@ class EgbeLem(LandlabModel):
         },
     }
 
-    def __init__(self, params={}):
+    def __init__(self, params={}, input_file=None):
         """Initialize the model."""
-        super().__init__(params)
+        super().__init__(params, input_file)
 
         # Set up grid fields
         ic_params = params["initial_conditions"]
@@ -188,7 +188,13 @@ class EgbeLem(LandlabModel):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        params = load_params(sys.argv[1])
+        try:
+            f = open(sys.argv[1], "r")
+            f.close()
+            print("Running EgbeLem with parameters in", sys.argv[1])
+            params = load_params(sys.argv[1])
+        except FileNotFoundError:
+            raise
     else:
         print("Running EgbeLem with default parameters")
         params = {}

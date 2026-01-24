@@ -8,9 +8,12 @@ from egbelem import EgbeLem
 
 def test_run_with_default_params_cl():
     os.system("python ../src/egbelem/egbelem.py")
+    os.system("python ../src/egbelem/egbelem.py ../src/egbelem/egbedefaults.yaml")
 
 def test_run_with_default_params():
     model = EgbeLem()
+    model.run()
+    model = EgbeLem("egbedefaults.yaml")
     model.run()
 
 
